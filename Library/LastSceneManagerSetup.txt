@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/MIUP/Presentation/untitled folder/Test.unity
+  isLoaded: 1
+  isActive: 1
