@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MIUP.Infraestructure.MIUPUtilsModule;
 
 namespace MIUP.GameName.MatrixModule.Domain 
 {
@@ -243,22 +244,13 @@ namespace MIUP.GameName.MatrixModule.Domain
 		/// <param name="action">The Action.</param>
 		protected void ApplyOnAdjasentCells(int row, int col, int z, System.Action<int, int, int> action)
 		{
-			//Check in all directions.
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Same, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Right, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Left, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Top, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.TopRight, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.TopLeft, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Under, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.UnderRight, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.UnderLeft, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Behind, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.BehindRight, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.BehindLeft, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.Front, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.FrontRight, action);
-			this.ApplyOnDirectionCell(row, col, z, MatrixDefinitions.CellDirections.FrontLeft, action);
+            //Check in all directions.
+            MatrixDefinitions.CellDirections[] directions = MIUPUtils.GetEnumValues<MatrixDefinitions.CellDirections>();
+
+            for(int i = 0; i < directions.Length; i++)
+            {
+                this.ApplyOnDirectionCell(row, col, z, directions[i], action);
+            }
 		}
 
 		/// <summary>
